@@ -94,7 +94,7 @@ resource "azurerm_storage_container" "blob1" {
 
 data "azurerm_storage_account_sas" "sas-token" {
   connection_string = azurerm_storage_account.storage-account.primary_connection_string
-  https_only        = true
+  https_only        = false
   signed_version    = "2024-11-04" # Use the latest version available
 
   resource_types {

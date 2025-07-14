@@ -1,18 +1,31 @@
+<?php require 'config.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Upload Image to Azure Blob</title>
+    <title>Azure Image Uploader</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Upload Image</h2>
+    <div class="container">
+        <h1>Azure Blob Image Uploader</h1>
 
-    <?php if (isset($_GET['upload']) && $_GET['upload'] === 'success'): ?>
-        <p style="color: green;">Image uploaded successfully!</p>
-    <?php endif; ?>
+        <?php if (is_logged_in()): ?>
+            <p>Welcome, user #<?= current_user_id() ?> | <a href="logout.php">Logout</a></p>
 
-    <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <button type="submit">Upload</button>
-    </form>
+            <?php if (isset($_GET['upload']) && $_GET['upload'] === 'success'): ?>
+                <p class="success">Image uploaded successfully!</p>
+            <?php endif; ?>
+
+            <form action="upload.php" method="POST" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="file" required>
+                <button type="submit">Upload</button>
+            </form>
+
+            <a href="list.php" class="button">View My Images</a>
+
+        <?php else: ?>
+            <p><a href="login.php">Login</a> | <a href="register.php">Register</a></p>
+        <?php endif; ?>
+    </div>
 </body>
 </html>

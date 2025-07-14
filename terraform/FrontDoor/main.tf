@@ -4,7 +4,7 @@ resource "azurerm_cdn_frontdoor_profile" "demo" {
   sku_name            = "Premium_AzureFrontDoor"
 }
 
-resource "azurerm_cdn_frontdoor_endpoint" "example" {
+resource "azurerm_cdn_frontdoor_endpoint" "demo" {
   name                     = "webapp-origin"
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.demo.id
 }
@@ -63,9 +63,15 @@ resource "azurerm_cdn_frontdoor_firewall_policy" "demo" {
   }
 }
 
+
+resource "time_sleep" "wait_for_origin" {
+  depends_on = [ azurerm_cdn_frontdoor_origin.demo ]
+  create_duration = "120s"
+}
+
 resource "azurerm_cdn_frontdoor_route" "demo" {
   name                          = "route-to-app"
-  cdn_frontdoor_endpoint_id     = azurerm_cdn_frontdoor_endpoint.example.id
+  cdn_frontdoor_endpoint_id     = azurerm_cdn_frontdoor_endpoint.demo.id
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.demo.id
   cdn_frontdoor_origin_ids      = [azurerm_cdn_frontdoor_origin.demo.id]
   forwarding_protocol           = "MatchRequest"
@@ -75,5 +81,5 @@ resource "azurerm_cdn_frontdoor_route" "demo" {
   link_to_default_domain        = true
   enabled                       = true
 
-  depends_on = [azurerm_cdn_frontdoor_origin.demo]
+  depends_on = [ time_sleep.wait_for_origin ]
 }

@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.container {
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.upload-form {
+    margin: 20px 0;
+}
+.success {
+    color: green;
+}
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #0078D4;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}

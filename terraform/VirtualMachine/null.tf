@@ -1,6 +1,6 @@
 resource "null_resource" "provision_jumpbox" {
     
-  depends_on = [azurerm_linux_virtual_machine.jumpbox-vm]
+  depends_on = [ azurerm_linux_virtual_machine.jumpbox-vm, azurerm_network_security_group.nsg_jumpbox ]
 
   provisioner "local-exec" {
     command     = "Start-Sleep -Seconds 30"
