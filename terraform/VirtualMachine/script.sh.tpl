@@ -9,7 +9,7 @@ sudo apt install mysql-client zip -y
 # The following command installs the Azure CLI on Ubuntu without user interaction.
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo DEBIAN_FRONTEND=noninteractive bash
 
-Create Tables
+# Create Tables
 mysql -h ${mysql_host} -u ${mysql_user} -p"${mysql_password}" -e "
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
