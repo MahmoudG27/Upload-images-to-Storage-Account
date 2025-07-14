@@ -3,8 +3,15 @@
 # This script installs the Azure CLI and MySQL client on an Ubuntu VM.
 
 # Get packages needed for the installation process:
+
+# Update the package list and install MySQL client and zip
 sudo apt update -y
-sudo apt install mysql-client zip -y
+sudo apt install -y mysql-client
+
+# Install PHP version 8.3 and required extensions
+sudo apt install -y zip curl gpg gnupg2 software-properties-common ca-certificates apt-transport-https lsb-release
+sudo add-apt-repository ppa:ondrej/php
+sudo apt -y install php8.3 php8.3-cli php8.3-fpm php8.3-mysql php8.3-zip php8.3-curl
 
 # The following command installs the Azure CLI on Ubuntu without user interaction.
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo DEBIAN_FRONTEND=noninteractive bash
