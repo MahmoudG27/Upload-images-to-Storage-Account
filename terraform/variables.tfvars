@@ -32,7 +32,7 @@ postgres_server_name           = "mg-postgres-server-klayytech"
 postgres_server_admin_username = "psqladmin"
 
 # This section defines the variables for the Storage Account.
-storage_account_name        = "storageaccountmg"
+storage_account_name        = "storageaccountmgm"
 storage_account_kind        = "StorageV2"
 storage_account_tier        = "Standard"
 storage_account_access_tier = "Hot"
@@ -49,7 +49,7 @@ app_service_plan_sku     = "P0v3"
 app_service_name         = "demomgklayytech"
 app_service_php_version  = "8.3" # Possible values "7.4", "8.0", "8.1", "8.2", "8.3"
 app_dns_zone_name        = "privatelink.azurewebsites.net"
-app_ibound_endpoint_name = "inbound-APP-endpoint"
+app_inbound_endpoint_name = "inbound-APP-endpoint"
 
 # This section defines the variables for the Azure Front Door.
 frontdoor_name          = "mgklayytechdemofrontdoor"

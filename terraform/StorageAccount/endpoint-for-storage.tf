@@ -8,7 +8,7 @@ resource "azurerm_private_endpoint" "storage-endpoint" {
   subnet_id           = var.inbound_subnet_id
 
   private_service_connection {
-    name                           = "storage-private-endpoint_cebfc634"
+    name                           = "storage-private-endpoint_cebfc63"
     private_connection_resource_id = azurerm_storage_account.storage-account.id
     subresource_names              = ["blob"]
     is_manual_connection           = false
@@ -25,6 +25,4 @@ resource "azurerm_private_endpoint" "storage-endpoint" {
     name                 = "default"
     private_dns_zone_ids = [azurerm_private_dns_zone.storage-dns.id]
   }
-
-  depends_on = [azurerm_storage_account.storage-account]
 }

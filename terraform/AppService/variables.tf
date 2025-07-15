@@ -80,6 +80,6 @@ variable "app_dns_zone_name" {
   type = string
 }
 
-variable "app_ibound_endpoint_name" {
+variable "app_inbound_endpoint_name" {
   type = string
 }

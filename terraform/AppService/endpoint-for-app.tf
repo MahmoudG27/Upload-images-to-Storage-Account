@@ -2,7 +2,7 @@
 # It defines the resources needed to create a private endpoint for an Azure Linux Web App.
 
 resource "azurerm_private_endpoint" "app-endpoint" {
-  name                = var.app_ibound_endpoint_name
+  name                = var.app_inbound_endpoint_name
   location            = var.location
   resource_group_name = var.resource_group_name
   subnet_id           = var.inbound_subnet_id

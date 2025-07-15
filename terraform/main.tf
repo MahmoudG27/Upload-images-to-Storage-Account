@@ -74,7 +74,7 @@ module "APP" {
   app_service_name         = var.app_service_name
   php_version              = var.app_service_php_version
   app_dns_zone_name        = var.app_dns_zone_name
-  app_ibound_endpoint_name = var.app_ibound_endpoint_name
+  app_inbound_endpoint_name = var.app_inbound_endpoint_name
 
   app_environment        = var.app_environment
   db_name                = var.db_name
