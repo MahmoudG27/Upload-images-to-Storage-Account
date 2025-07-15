@@ -1,6 +1,6 @@
 resource "time_sleep" "wait_for_origin" {
   depends_on      = [azurerm_cdn_frontdoor_origin.mg-origin]
-  create_duration = "120s"
+  create_duration = "300s"
 }
 
 resource "azurerm_cdn_frontdoor_route" "mg-route" {
