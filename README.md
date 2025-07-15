@@ -6,29 +6,7 @@ This project provisions a **secure private infrastructure** on **Microsoft Azure
 
 ## 📁 Project Structure
 
-.
-├── terraform/ # Infrastructure-as-Code modules
-│ ├── main.tf # Terraform root module
-│ ├── variables.tf # Input variables
-│ ├── outputs.tf # Output values
-│ ├── ResourceGroup/ # Azure Resource Group module
-│ ├── vnet/ # Virtual Network + Subnets
-│ ├── AppService/ # Private App Service + Plan
-│ ├── StorageAccount/ # Private Blob Storage module
-│ ├── privateMYSQL/ # Private MySQL Server module
-│ ├── FrontDoor.tf # Azure Front Door config
-│ └── VirtualMachine/ # Jump Host (Ubuntu VM + NSG)
-│
-├── Application/ # PHP web app
-│ ├── index.php # Homepage
-│ ├── register.php # User registration
-│ ├── upload.php # Image upload
-│ ├── list.php # View uploaded images
-│ └── config.php # DB & storage config
-│
-├── azure-pipelines.yml # Azure DevOps pipeline definition
-├── install-azure-devops-agent.sh # Script for self-hosted DevOps agent
-└── README.md # You are here
+<pre> . ├── terraform/ # Infrastructure-as-Code modules │ ├── main.tf # Terraform root module │ ├── variables.tf # Input variables │ ├── outputs.tf # Output values │ ├── ResourceGroup/ # Azure Resource Group module │ ├── vnet/ # Virtual Network + Subnets │ ├── AppService/ # Private App Service + Plan │ ├── StorageAccount/ # Private Blob Storage module │ ├── privateMYSQL/ # Private MySQL Server module │ ├── FrontDoor.tf # Azure Front Door config │ └── VirtualMachine/ # Jump Host (Ubuntu VM + NSG) │ ├── Application/ # PHP web app │ ├── index.php # Homepage │ ├── register.php # User registration │ ├── upload.php # Image upload │ ├── list.php # View uploaded images │ └── config.php # DB & storage config │ ├── azure-pipelines.yml # Azure DevOps pipeline definition ├── install-azure-devops-agent.sh # Script for self-hosted DevOps agent └── README.md # You are here </pre>
 
 
 ---
