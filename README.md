@@ -1,81 +1,101 @@
-# Azure Image Upload Application with Private Infrastructure
+# Azure Infrastructure + PHP Application Deployment
 
-## 📦 Project Overview
-
-This project provisions a secure, private Azure infrastructure using Terraform and deploys an application for uploading images to Azure Storage via an App Service.
-
-All core services — App Service, Storage Account, and MySQL Flexible Server — are private, meaning they are only accessible from within the configured virtual network. A jumpbox VM is provided for internal access, and Azure Front Door is used for secure, public access to the App Service.
+This project provisions a secure, private infrastructure in **Microsoft Azure** using **Terraform**, and deploys a simple **PHP application** that allows users to register, upload images, and view their images stored in **Azure Storage Account**.
 
 ---
 
-## 🛠️ Infrastructure Provisioned
+## 📁 Project Structure
 
-Terraform is used to provision the following resources:
+├── terraform/ # Terraform modules and resources
+│ ├── main.tf # Main entry point
+│ ├── variables.tf # Variable declarations
+│ ├── outputs.tf # Output values
+│ ├── ResourceGroup # Azure Resource Group module
+│ ├── vnet # Virtual Network with subnets module
+│ ├── AppService # Private Azure App Service with plan module
+│ ├── StorageAccount # Private Azure Storage Account with container and SAS token module
+│ ├── privateMYSQL # Private Azure MySQL Server
+│ ├── FrontDoor.tf # Azure Front Door for external access
+│ └── VirtualMachine # Ubuntu VM (Jump Host) with NSG
+│
+├── Application/ # PHP application
+│ ├── index.php # Home page
+│ ├── register.php # User registration
+│ ├── upload.php # Upload images
+│ ├── list.php # View images
+│ └── config.php # DB and Storage configuration
+│
+├── azure-pipelines.yml # Azure DevOps CI/CD Pipeline definition
+├── install-azure-devops-agent.sh # Script to install self-hosted Azure DevOps Agent (Linux)
+└── README.md # You're here
 
-### ☁️ Azure Core Resources
-
-| Resource Type               | Details                                              |
-|----------------------------|------------------------------------------------------|
-| **Resource Group**         | Central resource group for all resources             |
-| **Virtual Network (VNet)** | Hub-spoke style VNet with multiple subnets           |
-| **Subnets**                | - `default`<br>- `app_subnet` (App Service)<br>- `mysql_subnet` (Delegated to MySQL) |
-
-### 🔐 Private Azure Services
-
-| Resource                        | Description                                         |
-|----------------------------------|-----------------------------------------------------|
-| **Private App Service**         | Hosts the image uploader app using Private Endpoint |
-| **Private Azure Storage Account** | Stores uploaded images securely (Blob Storage)      |
-| **Azure MySQL Flexible Server** | Private endpoint MySQL with a DB named `photo`     |
-| **Azure Private DNS Zones**     | Ensures private name resolution for services        |
-
-### 🖥️ Compute & Access
-
-| Resource              | Description                                     |
-|-----------------------|-------------------------------------------------|
-| **Jumpbox VM**        | Ubuntu VM in `default` subnet for internal SSH access |
-| **NSG Rules**         | Limits inbound and outbound traffic             |
-
-### 🌐 Access & Routing
-
-| Resource          | Description                                          |
-|-------------------|------------------------------------------------------|
-| **Azure Front Door** | Provides public, secure access to the App Service |
 
 ---
 
-## 🚀 Application Overview
+## 🌐 Infrastructure Components
 
-The application is a simple image uploader that:
+Provisioned with Terraform under the `/terraform` directory:
 
-- Accepts image file uploads from the user
-- Stores images in the **private** Azure Blob Storage container
-- Optionally stores metadata (e.g., image name, path, timestamp) in **MySQL** (`photo` DB)
-
-> ✅ The application is hosted on **App Service** and only accessible securely through **Azure Front Door**.
+- **Resource Group** – Logical container for all resources.
+- **Virtual Network (VNet)** – Includes subnets for app service, storage, database, and VM.
+- **Private Azure App Service** – Hosts the PHP app with internal access only.
+- **Private Azure Storage Account** – For image uploads (private endpoint configured).
+- **Private Azure MySQL Server** – Backend database with private connectivity.
+- **Azure Front Door** – Public entry point that routes traffic securely to the app service.
+- **Jump Host (Ubuntu VM)** – Secure admin access point into the private network.
 
 ---
 
-## 📁 Directory Structure
+## 🧑‍💻 PHP Application Features
 
-```text
-.
-├── terraform/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   ├── networking.tf
-│   ├── compute.tf
-│   ├── storage.tf
-│   ├── app_service.tf
-│   ├── mysql.tf
-│   └── frontdoor.tf
-└── application/
-    ├── index.php (or app.py, main.js etc.)
-    ├── upload-form.html
-    └── storage_upload_logic.php
+Located in `/Application`, the app provides:
 
+- ✅ **User Registration**
+- 📷 **Image Upload to Azure Storage (Blob)**
+- 🖼️ **View Uploaded Images**
+- 🔒 Fully Private Backend (Storage, DB, App Service)
 
+All secrets and configuration are managed securely via environment variables or Azure Key Vault (if implemented).
 
-#Notes:
-- Approve the private link of the Front door to the app service from networking in app service blade then, Private endpoints
+---
+
+## 🚀 CI/CD with Azure DevOps
+
+- `azure-pipelines.yml`: Defines the pipeline for provisioning the infrastructure and deploying the PHP application.
+- `install-azure-devops-agent.sh`: Installs the **Azure DevOps self-hosted agent** on a Linux VM (Jump Host or dedicated CI VM).
+
+### Steps:
+1. Set up a self-hosted agent using the `install-azure-devops-agent.sh` script.
+2. Run the pipeline to deploy infra and app.
+
+---
+
+## 🧰 Prerequisites
+
+Before you begin, ensure you have the following:
+
+- [Terraform CLI](https://developer.hashicorp.com/terraform/downloads)
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+- Azure Subscription with required permissions
+- Azure DevOps organization and project
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Provision Infrastructure
+
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+
+2. Configure DevOps Agent
+SSH into your Ubuntu VM (Jump Host) and run:
+```bash
+bash install-azure-devops-agent.sh
+
+3. Deploy the Application
+Trigger the Azure DevOps pipeline using azure-pipelines.yml.
+
