@@ -18,11 +18,13 @@ resource "azurerm_private_endpoint" "storage-endpoint" {
     name               = "EndPoint-NIC"
     subresource_name   = "blob"
     member_name        = "blob"
-    private_ip_address = "10.0.0.60"
+    private_ip_address = "10.0.0.40"
   }
 
   private_dns_zone_group {
     name                 = "default"
     private_dns_zone_ids = [azurerm_private_dns_zone.storage-dns.id]
   }
+
+  depends_on = [azurerm_storage_account.storage-account]
 }
