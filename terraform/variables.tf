@@ -18,16 +18,16 @@ variable "vnet_name" {
 }
 
 variable "vnet_address_space" {
-  type    = list(string)
+  type = list(string)
 }
 
 # Variables for the subnets in the virtual network
 variable "inbound_subnet_name" {
-  type    = string
+  type = string
 }
 
 variable "inbound_subnet_address_space" {
-  type    = list(string)
+  type = list(string)
 }
 
 variable "outbound_subnet_app_name" {
@@ -37,7 +37,7 @@ variable "outbound_subnet_app_name" {
 
 variable "outbound_subnet_app_address_space" {
 
-  type    = list(string)
+  type = list(string)
 }
 
 variable "mysql_subnet_name" {
@@ -46,7 +46,7 @@ variable "mysql_subnet_name" {
 }
 
 variable "mysql_subnet_address_space" {
-  type    = list(string)
+  type = list(string)
 }
 
 variable "postgres_subnet_name" {
@@ -55,7 +55,7 @@ variable "postgres_subnet_name" {
 }
 
 variable "postgres_subnet_address_space" {
-  type    = list(string)
+  type = list(string)
 }
 
 ########################################################################
@@ -123,19 +123,19 @@ variable "storage_account_access_tier" {
 }
 
 variable "storage_replication_type" {
-  type    = string
+  type = string
 }
 
 variable "storage_container_name" {
-  type    = string
+  type = string
 }
 
 variable "storage_dns_zone_name" {
-  type    = string
+  type = string
 }
 
 variable "storage_endpoint_name" {
-  type    = string
+  type = string
 }
 
 ######################################################################
@@ -143,35 +143,35 @@ variable "storage_endpoint_name" {
 # Variables for the App Service:
 
 variable "app_environment" {
-  type    = string
+  type = string
 }
 
 variable "db_name" {
-  type    = string
+  type = string
 }
 
 variable "app_service_plan_name" {
-  type    = string
+  type = string
 }
 
 variable "app_service_plan_sku" {
-  type    = string
+  type = string
 }
 
 variable "app_service_name" {
-  type    = string
+  type = string
 }
 
 variable "app_service_php_version" {
-  type    = string
+  type = string
 }
 
 variable "app_dns_zone_name" {
-  type    = string
+  type = string
 }
 
 variable "app_inbound_endpoint_name" {
-  type    = string
+  type = string
 }
 
 ######################################################################
@@ -206,25 +206,25 @@ variable "route_name" {
 
 # Variables for the Virtual Machine module:
 variable "vm_name" {
-  type    = string
+  type = string
 }
 
 variable "vm_size" {
-  type    = string
+  type = string
 }
 
 variable "vm_user" {
-  type    = string
+  type = string
 }
 
 variable "vm_public_ip_name" {
-  type    = string
+  type = string
 }
 
 variable "vm_public_ip_method" {
-  type    = string
+  type = string
 }
 
 variable "vm_nic_name" {
-  type    = string
+  type = string
 }

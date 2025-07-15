@@ -69,11 +69,11 @@ module "APP" {
   outbound_subnet_id  = module.vnet.outbound_subnet_id
   inbound_subnet_id   = module.vnet.inbound_subnet_id
 
-  plan_name                = var.app_service_plan_name
-  plan_sku                 = var.app_service_plan_sku
-  app_service_name         = var.app_service_name
-  php_version              = var.app_service_php_version
-  app_dns_zone_name        = var.app_dns_zone_name
+  plan_name                 = var.app_service_plan_name
+  plan_sku                  = var.app_service_plan_sku
+  app_service_name          = var.app_service_name
+  php_version               = var.app_service_php_version
+  app_dns_zone_name         = var.app_dns_zone_name
   app_inbound_endpoint_name = var.app_inbound_endpoint_name
 
   app_environment        = var.app_environment

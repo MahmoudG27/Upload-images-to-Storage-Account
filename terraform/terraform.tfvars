@@ -12,13 +12,13 @@ vnet_address_space = ["10.0.0.0/16"]
 
 # This section defines the variables for the subnets in the virtual network.
 inbound_subnet_name               = "default"
-inbound_subnetaddress_space       = ["10.0.0.0/24"]
+inbound_subnet_address_space      = ["10.0.0.0/24"]
 outbound_subnet_app_name          = "outbound"
 outbound_subnet_app_address_space = ["10.0.1.0/24"]
-MYSQL_DB_name                     = "MYSQL-subnet"
-subnet_MYSQL_address_space        = ["10.0.2.0/24"]
-Postgres_DB_name                  = "Postgres-subnet"
-subnet_Postgres_address_space     = ["10.0.3.0/24"]
+mysql_subnet_name                 = "MYSQL-subnet"
+mysql_subnet_address_space        = ["10.0.2.0/24"]
+postgres_subnet_name              = "Postgres-subnet"
+postgres_subnet_address_space     = ["10.0.3.0/24"]
 
 # This section defines the variables for the MySQL server.
 mysql_server_name           = "mg-mysql-server-klayytech"
@@ -32,7 +32,7 @@ postgres_server_name           = "mg-postgres-server-klayytech"
 postgres_server_admin_username = "psqladmin"
 
 # This section defines the variables for the Storage Account.
-storage_account_name        = "storageaccountmahmoudg272"
+storage_account_name        = "storagemgklayytech" # Must be globally unique
 storage_account_kind        = "StorageV2"
 storage_account_tier        = "Standard"
 storage_account_access_tier = "Hot"
@@ -42,13 +42,13 @@ storage_dns_zone_name       = "privatelink.blob.core.windows.net"
 storage_endpoint_name       = "storage-private-endpoint"
 
 # This section defines the environment variables for the App Service.
-app_environment          = "production"
-db_name                  = "photos"
-app_service_plan_name    = "ASP-demo-8fda"
-app_service_plan_sku     = "P0v3"
-app_service_name         = "mahmoudgklayytech"
-app_service_php_version  = "8.3"                    # Possible values "7.4", "8.0", "8.1", "8.2", "8.3"
-app_dns_zone_name        = "privatelink.azurewebsites.net"
+app_environment           = "production"
+db_name                   = "photos"
+app_service_plan_name     = "ASP-demo-8fda"
+app_service_plan_sku      = "P0v3"
+app_service_name          = "mahmoudgklayytech"
+app_service_php_version   = "8.3" # Possible values "7.4", "8.0", "8.1", "8.2", "8.3"
+app_dns_zone_name         = "privatelink.azurewebsites.net"
 app_inbound_endpoint_name = "inbound-APP-endpoint"
 
 # This section defines the variables for the Azure Front Door.
