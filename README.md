@@ -1,101 +1,88 @@
-# Azure Infrastructure + PHP Application Deployment
+# 🚀 Azure Infrastructure + PHP Application Deployment
 
-This project provisions a secure, private infrastructure in **Microsoft Azure** using **Terraform**, and deploys a simple **PHP application** that allows users to register, upload images, and view their images stored in **Azure Storage Account**.
+This project provisions a **secure private infrastructure** on **Microsoft Azure** using **Terraform**, and deploys a lightweight **PHP application** for user registration and image uploads to **Azure Blob Storage**.
 
 ---
 
 ## 📁 Project Structure
 
-├── terraform/ # Terraform modules and resources
-│ ├── main.tf # Main entry point
-│ ├── variables.tf # Variable declarations
+.
+├── terraform/ # Infrastructure-as-Code modules
+│ ├── main.tf # Terraform root module
+│ ├── variables.tf # Input variables
 │ ├── outputs.tf # Output values
-│ ├── ResourceGroup # Azure Resource Group module
-│ ├── vnet # Virtual Network with subnets module
-│ ├── AppService # Private Azure App Service with plan module
-│ ├── StorageAccount # Private Azure Storage Account with container and SAS token module
-│ ├── privateMYSQL # Private Azure MySQL Server
-│ ├── FrontDoor.tf # Azure Front Door for external access
-│ └── VirtualMachine # Ubuntu VM (Jump Host) with NSG
+│ ├── ResourceGroup/ # Azure Resource Group module
+│ ├── vnet/ # Virtual Network + Subnets
+│ ├── AppService/ # Private App Service + Plan
+│ ├── StorageAccount/ # Private Blob Storage module
+│ ├── privateMYSQL/ # Private MySQL Server module
+│ ├── FrontDoor.tf # Azure Front Door config
+│ └── VirtualMachine/ # Jump Host (Ubuntu VM + NSG)
 │
-├── Application/ # PHP application
-│ ├── index.php # Home page
+├── Application/ # PHP web app
+│ ├── index.php # Homepage
 │ ├── register.php # User registration
-│ ├── upload.php # Upload images
-│ ├── list.php # View images
-│ └── config.php # DB and Storage configuration
+│ ├── upload.php # Image upload
+│ ├── list.php # View uploaded images
+│ └── config.php # DB & storage config
 │
-├── azure-pipelines.yml # Azure DevOps CI/CD Pipeline definition
-├── install-azure-devops-agent.sh # Script to install self-hosted Azure DevOps Agent (Linux)
-└── README.md # You're here
+├── azure-pipelines.yml # Azure DevOps pipeline definition
+├── install-azure-devops-agent.sh # Script for self-hosted DevOps agent
+└── README.md # You are here
 
 
 ---
 
-## 🌐 Infrastructure Components
+## 🌐 Provisioned Azure Infrastructure
 
-Provisioned with Terraform under the `/terraform` directory:
+Everything under the `/terraform` directory is automatically provisioned, including:
 
-- **Resource Group** – Logical container for all resources.
-- **Virtual Network (VNet)** – Includes subnets for app service, storage, database, and VM.
-- **Private Azure App Service** – Hosts the PHP app with internal access only.
-- **Private Azure Storage Account** – For image uploads (private endpoint configured).
-- **Private Azure MySQL Server** – Backend database with private connectivity.
-- **Azure Front Door** – Public entry point that routes traffic securely to the app service.
-- **Jump Host (Ubuntu VM)** – Secure admin access point into the private network.
+- 🗂️ **Resource Group** – Top-level container for all resources
+- 🌐 **Virtual Network (VNet)** – With subnets for the app, DB, and storage
+- 🔒 **Private Azure App Service** – Hosts the PHP app, internal only
+- 📦 **Private Azure Storage Account** – Blob container for image uploads
+- 🛢️ **Private Azure MySQL Server** – Secure backend database
+- 🌍 **Azure Front Door** – Secure public access point
+- 💻 **Jump Host (Ubuntu VM)** – Admin access with NSG rules
 
 ---
 
-## 🧑‍💻 PHP Application Features
+## 💻 Application Features
 
-Located in `/Application`, the app provides:
+The app is a simple PHP-based image sharing platform with:
 
 - ✅ **User Registration**
-- 📷 **Image Upload to Azure Storage (Blob)**
-- 🖼️ **View Uploaded Images**
-- 🔒 Fully Private Backend (Storage, DB, App Service)
+- 📷 **Image Upload to Azure Blob Storage**
+- 🖼️ **Image Listing Interface**
+- 🔐 **Private Backend** (no public DB or storage exposure)
 
-All secrets and configuration are managed securely via environment variables or Azure Key Vault (if implemented).
-
----
-
-## 🚀 CI/CD with Azure DevOps
-
-- `azure-pipelines.yml`: Defines the pipeline for provisioning the infrastructure and deploying the PHP application.
-- `install-azure-devops-agent.sh`: Installs the **Azure DevOps self-hosted agent** on a Linux VM (Jump Host or dedicated CI VM).
-
-### Steps:
-1. Set up a self-hosted agent using the `install-azure-devops-agent.sh` script.
-2. Run the pipeline to deploy infra and app.
+Secrets and credentials are securely managed via environment variables (or optionally with Azure Key Vault).
 
 ---
 
-## 🧰 Prerequisites
+## 🔁 CI/CD with Azure DevOps
 
-Before you begin, ensure you have the following:
+**Automated Deployment Pipeline**:
 
-- [Terraform CLI](https://developer.hashicorp.com/terraform/downloads)
-- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
-- Azure Subscription with required permissions
-- Azure DevOps organization and project
+- `azure-pipelines.yml`: Deploys infrastructure and the PHP app
+- `install-azure-devops-agent.sh`: Installs a self-hosted agent (Linux VM)
 
----
+### Deployment Steps
 
-## ⚙️ Getting Started
+1. **Set Up Self-Hosted Agent**  
+   SSH into the Ubuntu Jump Host and run:
+   ```bash
+   bash install-azure-devops-agent.sh
+   ```
 
-### 1. Provision Infrastructure
+2. **Provision Infrastructure**
+    ```bash
+    cd terraform
+    terraform init
+    terraform plan
+    terraform apply
+    ```
 
-```bash
-cd terraform
-terraform init
-terraform plan
-terraform apply
-
-2. Configure DevOps Agent
-SSH into your Ubuntu VM (Jump Host) and run:
-```bash
-bash install-azure-devops-agent.sh
-
-3. Deploy the Application
-Trigger the Azure DevOps pipeline using azure-pipelines.yml.
+3. **Run CI/CD Pipeline**
+Trigger the Azure DevOps pipeline to deploy the app.
 
