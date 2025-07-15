@@ -3,10 +3,10 @@
 # Must variables be set before running the script
 AZDO_URL="https://dev.azure.com/MahmoudG"    # Add your Azure DevOps organization URL
 AZDO_POOL="PrivateAgents"                    # The name of the agent pool
-AZDO_PAT="your_pat_token_here"               # Ensure you replace 'your_pat_token_here' with your actual PAT token.
+AZDO_PAT="Put your PAT token here"           # Ensure you replace 'your_pat_token_here' with your actual PAT token.
 
 AGENT_NAME="private-vnet-agent"              # Name of the agent
-WORK_DIR="/home/azureagent"                  # Working directory for the agent
+WORK_DIR="/home/adminuser/azureagent"        # Working directory for the agent
 AGENT_VERSION="4.258.1"                      # Check latest version for agent
 AGENT_FILE="vsts-agent-linux-x64-${AGENT_VERSION}.tar.gz"                                   # Name of the agent file to download
 DOWNLOAD_URL="https://download.agent.dev.azure.com/agent/${AGENT_VERSION}/${AGENT_FILE}"    # Download URL for the agent file
