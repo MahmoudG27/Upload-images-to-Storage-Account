@@ -5,5 +5,6 @@ data "template_file" "vm_script" {
     mysql_host     = var.db_host
     mysql_user     = var.db_user
     mysql_password = var.db_user_password
+    mysql_db_name  = var.db_name
   }
 }

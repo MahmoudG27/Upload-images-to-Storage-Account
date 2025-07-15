@@ -30,6 +30,20 @@ variable "storage_account_tier" {
 
 variable "storage_account_access_tier" {
   type = string
-  default = "Hot"
 }
 
+variable "storage_replication_type" {
+  type = string
+}
+
+variable "storage_container_name" {
+  type = string
+}
+
+variable "storage_dns_zone_name" {
+  type = string
+}
+
+variable "storage_endpoint_name" {
+  type = string
+}

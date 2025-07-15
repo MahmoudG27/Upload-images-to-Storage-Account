@@ -1,3 +1,5 @@
+# variables inherit from the root module:
+
 variable "resource_group_name" {
   type = string
 }
@@ -18,10 +20,11 @@ variable "inbound_subnet_id" {
   type = string
 }
 
-##########################################
+###########
 
-# Environment Variables of App service:
-variable "app_enviroment" {
+# Environment Variables for App service:
+
+variable "app_environment" {
   type = string
 }
 
@@ -38,7 +41,7 @@ variable "db_user" {
 }
 
 variable "db_user_password" {
-  type      = string
+  type = string
 }
 
 variable "storage_account_name" {
@@ -50,5 +53,33 @@ variable "storage_container_name" {
 }
 
 variable "storage_sas_token" {
+  type = string
+}
+
+###############################################################
+
+# Module APP variables:
+
+variable "plan_name" {
+  type = string
+}
+
+variable "plan_sku" {
+  type = string
+}
+
+variable "app_service_name" {
+  type = string
+}
+
+variable "php_version" {
+  type = string
+}
+
+variable "app_dns_zone_name" {
+  type = string
+}
+
+variable "app_ibound_endpoint_name" {
   type = string
 }

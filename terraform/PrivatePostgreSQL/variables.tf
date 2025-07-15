@@ -17,9 +17,9 @@ variable "Postgres_subnet_id" {
 ###################################################################
 
 variable "postgres_server_name" {
-  type        = string
+  type = string
 }
 
 variable "postgres_server_admin_username" {
-  type        = string
+  type = string
 }

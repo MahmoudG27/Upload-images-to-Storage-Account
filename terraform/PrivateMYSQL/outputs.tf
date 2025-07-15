@@ -13,3 +13,8 @@ output "mysql_admin_password" {
   sensitive   = true
   description = "MySQL admin password (sensitive)"
 }
+
+output "mysql_database_name" {
+  value       = azurerm_mysql_flexible_database.photos.name
+  description = "MySQL database name"
+}

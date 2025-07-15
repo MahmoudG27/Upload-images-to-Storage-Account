@@ -23,3 +23,15 @@ variable "mysql_server_name" {
 variable "mysql_server_admin_username" {
   type = string
 }
+
+variable "mysql_sku_name" {
+  type = string
+}
+
+variable "mysql_database_name" {
+  type = string
+}
+
+variable "mysql_dns_zone_name" {
+  type = string
+}
