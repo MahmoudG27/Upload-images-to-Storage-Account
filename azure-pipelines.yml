@@ -1,40 +1,22 @@
-# PHP as Linux Web App on Azure
-# Build, package and deploy your PHP project to Azure Linux Web App.
+# trigger:
+# - master
 
-# Ensure you replace 'Azure Resource Manager connection' with your actual ARM connection & 'Web App name' with your actual Web App name.
-
-trigger:
-- master
+pool:
+  name: PrivateAgents
 
 variables:
-  azureSubscription: 'e4cd9437-c3d6-437a-ab1f-774ebb120f4b'  # Use your actual service connection
-  webAppName: 'mahmoudgklayytech'                            # Use your actual web app name 
-  vmImageName: 'PrivateAgents'                               # Use your actual agent pool name         
+  registryName: 'mahmoudg'
+  imageName: 'pizza'
+  tags: '$(Build.BuildId)'
 
-stages:
-- stage: BuildAndDeploy
-  displayName: Build and Deploy Stage
-  jobs:
-  - job: SingleAgentJob
-    displayName: Build and Deploy Job
-    pool:
-      name: $(vmImageName)
-    steps:
-    - checkout: self
+steps:
+- checkout: self
 
-    - task: ArchiveFiles@2
-      displayName: 'Archive Application Folder'
-      inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/Application'
-        includeRootFolder: false
-        archiveType: zip
-        archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
-        replaceExistingArchive: true
-
-    - task: AzureWebApp@1
-      displayName: 'Deploy to Azure Web App'
-      inputs:
-        azureSubscription: $(azureSubscription)
-        appName: $(webAppName)
-        appType: webAppLinux
-        package: '$(Build.ArtifactStagingDirectory)/app.zip'
+- task: AzureCLI@2
+  displayName: 'Login to ACR'
+  inputs:
+    azureSubscription: 'MyAzureServiceConnection'   # ARM service connection
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az acr login --name $(registryName)
