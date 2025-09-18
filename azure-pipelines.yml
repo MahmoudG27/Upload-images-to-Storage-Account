@@ -1,10 +1,9 @@
 # PHP as Linux Web App on Azure
 # Build, package and deploy your PHP project to Azure Linux Web App.
+# Ensure you replace 'Azure Resource Manager connection' with your actual ARM connection & 'Web App name' with your actual Web App name.
+
 trigger:
 - master
-
-pool:
-  name: PrivateAgents
 
 variables:
   azureSubscription: 'e4cd9437-c3d6-437a-ab1f-774ebb120f4b'  # Use your actual service connection
